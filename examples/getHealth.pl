@@ -10,8 +10,8 @@ use BitTorrent;
 
 my $torrentfile = "http://www.mininova.org/get/620364";
 
-my $obj		= BitTorrent->new($torrentfile);
-my $HashRef = $obj->getHealth();
+my $obj		= BitTorrent->new();
+my $HashRef = $obj->getHealth($torrentfile);
 
 print "Seeder: " . $HashRef->{seeder};
 print "Leecher: " . $HashRef->{leecher};

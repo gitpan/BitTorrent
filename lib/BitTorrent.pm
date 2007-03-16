@@ -19,15 +19,15 @@ our @EXPORT = qw(
 	getHealth
 );
 
-our $VERSION		= '0.01';
+our $VERSION		= '0.02';
 our $TorrentScrape	= "/var/lib/perl/torrent-checker.php";
 
 
 sub new(){
 	
 	my $self			= bless {}, shift;
-	my $url				= shift;
-	$self->{torrent}	= $url;		# later check if torrent file via http head status
+#	my $url				= shift;
+#	$self->{torrent}	= $url;		# later check if torrent file via http head status
 
 	return $self;
 		
@@ -37,7 +37,7 @@ sub new(){
 sub getHealth(){
 
 	my $self			= shift;
-	my $torrent			= $self->{torrent};
+	my $torrent			= shift;
 
 	# init
 	my $Hash = ();
@@ -85,8 +85,8 @@ BitTorrent - Perl extension for extracting, publishing and maintaining BitTorren
 
 	use BitTorrent;
 	my $torrentfile = "http://www.mininova.org/get/620364";
-	my $obj		= BitTorrent->new($torrentfile);
-	my $HashRef = $obj->getHealth();
+	my $obj		= BitTorrent->new();
+	my $HashRef = $obj->getHealth($torrentfile);
 	
 	print "Seeder: " . $HashRef->{seeder};
 	print "Leecher: " . $HashRef->{leecher};
